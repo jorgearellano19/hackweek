@@ -1,0 +1,19 @@
+{
+  "name": "faultfinder-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorgearellano19/hackweek.git"
+  },
+  "author": "Jorge Arellano y Jose Luis Daza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jorgearellano19/hackweek/issues"
+  },
+  "homepage": "https://github.com/jorgearellano19/hackweek#readme"
+}
