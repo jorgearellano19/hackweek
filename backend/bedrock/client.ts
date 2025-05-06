@@ -1,4 +1,4 @@
-import { BedrockAgentRuntimeClient, RetrieveAndGenerateCommand, RetrieveAndGenerateCommandOutput } from "@aws-sdk/client-bedrock-agent-runtime"
+import { BedrockAgentRuntimeClient, RetrieveAndGenerateCommand } from "@aws-sdk/client-bedrock-agent-runtime"
 const client = new BedrockAgentRuntimeClient({ region: "us-east-2" });
 
 
