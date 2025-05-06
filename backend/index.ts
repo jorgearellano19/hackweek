@@ -1,6 +1,7 @@
+import dotenv from "dotenv";
 import { server } from "./schema";
 
-require('dotenv').config();
+dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
