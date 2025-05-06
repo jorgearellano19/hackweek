@@ -1,11 +1,24 @@
 import { retrieveAndGenerate } from "../bedrock/client";
 
 export type FaultFinderArgs = {
-  input: string;
+  textInput: string;
+  sessionId?: string;
 };
 
-export async function faultFinder({ input }: FaultFinderArgs) {
-  const response = await retrieveAndGenerate(input);
+export type FinderResponse = {
+  textOutput?: string;
+  sessionId?: string;
+  score?: number;
+};
 
-  return response.output?.text;
+export async function faultFinder({
+  textInput,
+  sessionId,
+}: FaultFinderArgs): Promise<FinderResponse> {
+  const response = await retrieveAndGenerate(textInput, sessionId);
+
+  return {
+    textOutput: response.output?.text,
+    sessionId: response.sessionId,
+  };
 }
