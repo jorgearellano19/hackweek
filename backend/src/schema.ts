@@ -1,8 +1,6 @@
-import { ApolloServer, gql } from "apollo-server";
-import resolvers from "./resolvers/resolvers";
+import { gql } from "apollo-server-express";
 
-// TODO: Use codegen if there is time.
-const typeDefs = gql`
+export const typeDefs = gql`
   # See resolvers/faultFinder -> FinderResponse
   type BotResponse {
     textOutput: String
@@ -15,8 +13,3 @@ const typeDefs = gql`
     faultFinder(textInput: String!, sessionId: String): BotResponse!
   }
 `;
-
-export const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-});

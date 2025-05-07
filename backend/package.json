@@ -1,5 +1,6 @@
 {
   "name": "faultfinder-bot",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -17,13 +18,14 @@
     "./backend"
   ],
   "scripts": {
-    "local": "AWS_PROFILE=hackweek ts-node index.ts"
+    "compile": "tsc",
+    "local": "npm run compile && node --experimental-specifier-resolution=node ./dist/server.js"
   },
   "dependencies": {
+    "@apollo/server": "^4.12.0",
     "@aws-sdk/client-bedrock-agent-runtime": "^3.803.0",
     "@aws-sdk/client-bedrock-runtime": "^3.803.0",
-    "apollo-server": "^3.13.0",
-    "express": "^5.1.0",
+    "express": "4.17.1",
     "express-graphql": "^0.12.0",
     "graphql": "^16.11.0",
     "graphql-compose": "^9.1.0",

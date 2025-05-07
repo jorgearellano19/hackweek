@@ -4,7 +4,13 @@ import {
 } from "@aws-sdk/client-bedrock-agent-runtime";
 import { generateTemplate } from "./promptTemplates";
 
-const client = new BedrockAgentRuntimeClient({ region: process.env.AWS_REGION });
+const client = new BedrockAgentRuntimeClient({ 
+  region: process.env.AWS_REGION, 
+  credentials: {
+    accessKeyId: process.env.ACCESS_KEY, 
+    secretAccessKey: process.env.SECRET_KEY
+  } 
+});
 
 export async function retrieveAndGenerate(textInput: string, sessionId?: string) {
   const command = new RetrieveAndGenerateCommand({

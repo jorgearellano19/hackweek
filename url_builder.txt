@@ -1,0 +1,5 @@
+url vehicle = https://honkda.staging.pull.systems/vehicle/$pvin
+change $pvin for the desired vehicle
+
+url fault = https://honkda.staging.pull.systems/fault/$faultCode
+Change $faultCode for the fault code specified
