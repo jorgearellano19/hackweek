@@ -2,7 +2,7 @@ import {
   BedrockAgentRuntimeClient,
   RetrieveAndGenerateCommand,
 } from "@aws-sdk/client-bedrock-agent-runtime";
-import { generateTemplate, Stage } from "./promptTemplates";
+import { generateTemplate } from "./promptTemplates";
 
 const client = new BedrockAgentRuntimeClient({ region: process.env.AWS_REGION });
 
