@@ -1,4 +1,9 @@
 node_modules
-backend/.env
 .DS_STORE
 backend/dist/*
+.DS_STORE
+
+# Ignore all .env files except .env.example
+*.env
+*.env.*
+!*.env.example
