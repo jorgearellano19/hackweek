@@ -24,11 +24,11 @@ type FaultFinderVariables = {
   sessionId?: string;
 };
 
-export const useFinder = (variables: FaultFinderVariables) => {
+export const useFinder = (variables: FaultFinderVariables, disabled?: boolean) => {
   return useQuery({
     queryKey: ["finder", variables],
     queryFn: () => apiFetch<FinderResponse>(FINDER_QUERY, variables),
-    enabled: !!variables.textInput,
+    enabled: !disabled && !!variables.textInput,
     staleTime: QUERY_STALE_TIME,
   });
 };
