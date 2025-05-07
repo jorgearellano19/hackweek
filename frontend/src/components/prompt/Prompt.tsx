@@ -46,7 +46,11 @@ const Prompt = () => {
     setFocus("textInput");
   });
 
-  const { isLoading } = usePrompt({ lastUserMessage, onResponse: onFinderResponse });
+  const { isLoading } = usePrompt({
+    lastUserMessage,
+    lastElement: feed.at(-1),
+    onResponse: onFinderResponse,
+  });
 
   const resultFeed = isLoading
     ? [...feed, { value: "", isLoading }]
