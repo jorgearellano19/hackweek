@@ -1,4 +1,4 @@
-import { Text } from "@chakra-ui/react";
+import { Spinner, Text } from "@chakra-ui/react";
 import type { FeedElement } from "./Prompt.types";
 
 import "./PromptFeed.scss";
@@ -15,8 +15,8 @@ const PromptFeed = ({ feed }: PromptFeedProps) => {
         {feed.map((e) => {
           const elementClassName = `feed-element${e.fromUser ? " from-user" : ""}`;
           return (
-            <Text textStyle="md" className={elementClassName}>
-              {e.fromUser ? e.value : <Linkify text={e.value} />}
+            <Text textStyle="md" className={elementClassName} key={e.timestamp ?? Math.random()}>
+              {e.fromUser ? e.value : e.isLoading ? <Spinner size="sm" /> : <Linkify text={e.value} /> }
             </Text>
           );
         })}
