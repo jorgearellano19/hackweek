@@ -2,6 +2,7 @@ import {
   BedrockAgentRuntimeClient,
   RetrieveAndGenerateCommand,
 } from "@aws-sdk/client-bedrock-agent-runtime";
+import { generateTemplate } from "./promptTemplates";
 
 const client = new BedrockAgentRuntimeClient({ region: process.env.AWS_REGION });
 
@@ -13,6 +14,16 @@ export async function retrieveAndGenerate(textInput: string, sessionId?: string)
       knowledgeBaseConfiguration: {
         knowledgeBaseId: process.env.KNOWLEDGE_BASE_ID,
         modelArn: process.env.MODEL_ARN,
+        retrievalConfiguration: {
+          vectorSearchConfiguration: {
+            numberOfResults: 10
+          }
+        },
+        generationConfiguration: {
+          promptTemplate: {
+            textPromptTemplate: generateTemplate,
+          }
+        }
       },
     },
     sessionId,
