@@ -1,3 +1,5 @@
+import React from "react";
+
 const URL_REGEX = /(https?:\/\/[^\s]+)/g;
 const MARKDOWN_LINK_REGEX = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
 
@@ -7,20 +9,18 @@ type LinkifyProps = {
 
 const Linkify = ({ text }: LinkifyProps) => {
   const elements: React.ReactNode[] = [];
-
   let lastIndex = 0;
 
-  // Find markdown links and push content before/after them
   const matches = [...text.matchAll(MARKDOWN_LINK_REGEX)];
 
   for (const match of matches) {
     const [fullMatch, label, url] = match;
     const matchIndex = match.index ?? 0;
 
-    // Push any text before the match
+    // Push text before the markdown link, including any plain URLs in it
     if (lastIndex < matchIndex) {
-      const beforeText = text.slice(lastIndex, matchIndex);
-      elements.push(...splitAndLinkifyPlainUrls(beforeText));
+      const before = text.slice(lastIndex, matchIndex);
+      elements.push(...linkifyPlainUrls(before));
     }
 
     // Push the markdown link
@@ -33,26 +33,36 @@ const Linkify = ({ text }: LinkifyProps) => {
     lastIndex = matchIndex + fullMatch.length;
   }
 
-  // Push the remaining text
+  // Push the rest of the text (also linkify it)
   if (lastIndex < text.length) {
     const remaining = text.slice(lastIndex);
-    elements.push(...splitAndLinkifyPlainUrls(remaining));
+    elements.push(...linkifyPlainUrls(remaining));
   }
 
   return <>{elements}</>;
 };
 
-// Helper to convert plain URLs to <a> links
-const splitAndLinkifyPlainUrls = (text: string): React.ReactNode[] => {
-  return text.split(URL_REGEX).map((part, i) =>
-    URL_REGEX.test(part) ? (
-      <a key={i} href={part} target="_blank" rel="noopener noreferrer">
-        {part}
-      </a>
-    ) : (
-      <span key={i}>{part}</span>
-    )
-  );
+const linkifyPlainUrls = (text: string): React.ReactNode[] => {
+  const parts = text.split(URL_REGEX);
+  return parts.map((part, i) => {
+    if (URL_REGEX.test(part)) {
+      // Separate URL and any trailing punctuation
+      const match = part.match(/^(https?:\/\/[^\s]+?)([.,!?)]*)$/);
+      const url = match?.[1] ?? part;
+      const trailing = match?.[2] ?? "";
+
+      return (
+        <React.Fragment key={i}>
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            {url}
+          </a>
+          {trailing}
+        </React.Fragment>
+      );
+    } else {
+      return <span key={i}>{part}</span>;
+    }
+  });
 };
 
-export default Linkify;
+export default Linkify
