@@ -24,6 +24,7 @@ const Prompt = () => {
     register,
     handleSubmit,
     reset,
+    setFocus,
     formState: { errors },
   } = useForm<FormValues>();
 
@@ -39,8 +40,10 @@ const Prompt = () => {
       value: data.textInput,
       fromUser: true,
     } satisfies FeedElement;
+
     setFeed((prev) => [...prev, userMessage]);
     reset();
+    setFocus("textInput");
   });
 
   const { isLoading } = usePrompt({ lastUserMessage, onResponse: onFinderResponse });
@@ -63,7 +66,6 @@ const Prompt = () => {
                   placeholder="Ask me anything..."
                   {...register("textInput")}
                   variant="flushed"
-                  disabled={isLoading}
                   autoFocus
                 />
               </InputGroup>
