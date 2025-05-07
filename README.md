@@ -1,11 +1,27 @@
 # Fault Finder Bot
 
-- AWS bedrock based
+This is a proof-of-concept (PoC) for the **Fault Finder Bot**, which uses [Retrieval-Augmented Generation (RAG)](https://aws.amazon.com/what-is/retrieval-augmented-generation/) powered by **AWS Bedrock**.
 
-## Running Locally
+## Running Locally
 
-- Before everything, create a profile in AWS CLI using `aws configure` command named `hackweek`.
+1. **Set up AWS credentials**
 
-- Run `npm run local` in the backend folder
+   Configure an AWS CLI profile named `hackweek`:
 
-- Run `npm run dev` in the frontend folder
+   `aws configure --profile hackweek`
+
+2. **Set up environment variables**
+
+    Setup the enviroment variables by following the `.env.example` files:
+
+    *frontend/.env.example → frontend/.env*
+
+    *backend/.env.example → backend/.env*
+
+3. **Start the project**
+
+    From the root directory, run:
+    
+    `npm run local`
+
+    this will start both an Apollo Server (API) and a Vite server (Frontend)
