@@ -52,9 +52,9 @@ const Prompt = () => {
     onResponse: onFinderResponse,
   });
 
-  const resultFeed = isLoading
-    ? [...feed, { value: "", isLoading }]
-    : (feed satisfies FeedElement[]);
+  const resultFeed = (
+    isLoading ? [...feed, { value: "", isLoading }] : feed
+  ) satisfies FeedElement[];
 
   return (
     <Card.Root size="lg">
