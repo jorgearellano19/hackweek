@@ -21,7 +21,7 @@ export async function retrieveAndGenerate(textInput: string, sessionId?: string)
         },
         generationConfiguration: {
           promptTemplate: {
-            textPromptTemplate: generateTemplate(process.env.STAGE as Stage || "dev"),
+            textPromptTemplate: generateTemplate(process.env.STAGE_URL as string),
           }
         }
       },
