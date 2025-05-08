@@ -5,7 +5,7 @@ import { Application } from "express";
 import { Server } from "node:http";
 
 // TODO: Use codegen if there is time.
-const typeDefs = gql`
+export const typeDefs = gql`
   # See resolvers/faultFinder -> FinderResponse
   type BotResponse {
     textOutput: String
@@ -18,14 +18,3 @@ const typeDefs = gql`
     faultFinder(textInput: String!, sessionId: String): BotResponse!
   }
 `;
-
-export const startApolloServer = async (app: Application, httpServer: Server) => {
-  const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-  });
-
-  await server.start();
-  server.applyMiddleware({ app });
-}
