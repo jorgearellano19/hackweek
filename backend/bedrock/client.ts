@@ -19,7 +19,6 @@ const client = new BedrockAgentRuntimeClient({
 });
 
 export async function retrieveAndGenerate(textInput: string, sessionId?: string) {
-  console.log(process.env);
   const command = new RetrieveAndGenerateCommand({
     input: { text: textInput },
     retrieveAndGenerateConfiguration: {
@@ -41,7 +40,5 @@ export async function retrieveAndGenerate(textInput: string, sessionId?: string)
     },
     sessionId,
   });
-  console.log(process.env);
-  console.log(await client.config.credentials());
   return await client.send(command);
 }
