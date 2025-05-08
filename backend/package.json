@@ -17,7 +17,9 @@
     "./backend"
   ],
   "scripts": {
-    "local": "AWS_PROFILE=hackweek ts-node index.ts"
+    "local": "AWS_PROFILE=hackweek ts-node index.ts",
+    "build": "tsc",
+    "start:prod": "node dist/index.js"
   },
   "dependencies": {
     "@aws-sdk/client-bedrock-agent-runtime": "^3.803.0",
