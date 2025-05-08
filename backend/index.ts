@@ -2,7 +2,7 @@ import { ApolloServer } from "@apollo/server";
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import * as dotenv from "dotenv";
-import * as express from "express";
+import express from "express";
 import * as http from "http";
 
 import resolvers from "./resolvers/resolvers";
