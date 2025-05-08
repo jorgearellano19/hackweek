@@ -26,6 +26,7 @@
     "express": "^5.1.0",
     "graphql": "^16.11.0",
     "graphql-compose": "^9.1.0",
-    "graphql-tools": "^9.0.18"
+    "graphql-tools": "^9.0.18",
+    "ts-node": "^10.9.2"
   }
 }
