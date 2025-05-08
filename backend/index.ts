@@ -26,3 +26,5 @@ export const server = new ApolloServer({
 startStandaloneServer(server, {
   listen: { port: PORT },
 }).then(({ url }) => console.log(`🚀  Server ready at ${url}`));
+
+export default httpServer;
