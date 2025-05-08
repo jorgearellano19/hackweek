@@ -3,7 +3,6 @@ import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHt
 import { startStandaloneServer } from '@apollo/server/standalone';
 import * as dotenv from "dotenv";
 import * as express from "express";
-import * as cors from 'cors';
 import * as http from "http";
 
 import resolvers from "./resolvers/resolvers";
@@ -12,7 +11,6 @@ dotenv.config();
 
 const PORT = process.env.PORT as unknown as number || 3000;
 const app = express();
-app.use(cors());
 app.use(express.json());
 const httpServer = http.createServer(app);
 
