@@ -17,7 +17,7 @@
     "./backend"
   ],
   "scripts": {
-    "local": "AWS_PROFILE=hackweek ts-node index.ts",
+    "local": "ts-node index.ts",
     "build": "tsc",
     "start:prod": "node dist/index.js"
   },

@@ -7,15 +7,8 @@ import * as dotenv from "dotenv";
 import { generateTemplate } from "./promptTemplates";
 dotenv.config();
 
-const SECRET_KEY: string = process.env.SECRET_KEY || "";
-const ACCESS_KEY: string = process.env.ACCESS_KEY || "";
-
 const client = new BedrockAgentRuntimeClient({ 
   region: process.env.AWS_REGION,
-  credentials: {
-    secretAccessKey: SECRET_KEY,
-    accessKeyId: ACCESS_KEY,
-  }
 });
 
 export async function retrieveAndGenerate(textInput: string, sessionId?: string) {
